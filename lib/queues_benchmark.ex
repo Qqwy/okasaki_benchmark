@@ -17,12 +17,12 @@ defmodule QueuesBenchmark do
       Okasaki.Implementations.ConstantDeque,
     ]
 
-    IO.puts "Running benchmark with #{num_items} items."
+    # IO.puts "Running benchmark with #{num_items} items."
 
     queue_implementations
     |> Enum.map(&example_tuple(list, &1))
     |> Enum.into(%{})
-    |> Benchee.run(time: 10, memory_time: 2);
+    |> Benchee.run(time: 2, memory_time: 2);
   end
 
   defp example_tuple(list, implementation) do
