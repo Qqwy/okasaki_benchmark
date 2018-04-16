@@ -11,6 +11,10 @@ defmodule QueuesBenchmark do
       Okasaki.Implementations.ErlangQueue,
       Okasaki.Implementations.AmortizedQueue,
       Okasaki.Implementations.ConstantQueue,
+
+      Okasaki.Implementations.ErlangDeque,
+      Okasaki.Implementations.AmortizedDeque,
+      Okasaki.Implementations.ConstantDeque,
     ]
 
     queue_implementations
@@ -30,8 +34,8 @@ defmodule QueuesBenchmark do
   end
 
   defp example(list, implementation) do
-    queue =
-      Okasaki.Queue.new(list, implementation: implementation)
-      |> Okasaki.Queue.size()
+    list
+    |> Okasaki.Queue.new(implementation: implementation)
+    |> Okasaki.Queue.size()
   end
 end
