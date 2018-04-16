@@ -1,6 +1,7 @@
 defmodule QueuesBenchmark do
   @moduledoc """
-  Documentation for QueuesBenchmark.
+  Runs the benchmark to compare the different
+  speeds of the queue implementations contained in the Okasaki queues library.
   """
 
   def run_benchmark do
@@ -18,20 +19,19 @@ defmodule QueuesBenchmark do
     |> Benchee.run(time: 10, memory_time: 2);
   end
 
-  def example_tuple(list, implementation) do
+  defp example_tuple(list, implementation) do
     {"#{implementation}", example_lambda(list, implementation)}
   end
 
-  def example_lambda(list, implementation) do
+  defp example_lambda(list, implementation) do
     fn ->
       example(list, implementation)
     end
   end
 
-  def example(list, implementation) do
+  defp example(list, implementation) do
     queue =
       Okasaki.Queue.new(list, implementation: implementation)
       |> Okasaki.Queue.size()
   end
-
 end
