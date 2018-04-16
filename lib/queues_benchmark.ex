@@ -4,9 +4,9 @@ defmodule QueuesBenchmark do
   speeds of the queue implementations contained in the Okasaki queues library.
   """
 
-  def run_benchmark do
+  def run_benchmark(num_items \\ 50_000) do
 
-    list = Enum.to_list(1..10_000)
+    list = Enum.to_list(1..num_items)
     queue_implementations = [
       Okasaki.Implementations.ErlangQueue,
       Okasaki.Implementations.AmortizedQueue,
@@ -16,6 +16,8 @@ defmodule QueuesBenchmark do
       Okasaki.Implementations.AmortizedDeque,
       Okasaki.Implementations.ConstantDeque,
     ]
+
+    IO.puts "Running benchmark with #{num_items} items."
 
     queue_implementations
     |> Enum.map(&example_tuple(list, &1))
